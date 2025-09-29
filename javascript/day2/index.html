@@ -1,0 +1,29 @@
+<form id="myForm">
+  <input type="text" id="title" placeholder="Enter title" />
+  <textarea id="content" placeholder="Enter content"></textarea>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", async function(e) {
+  e.preventDefault(); // prevent page refresh
+
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+const usersdata=[{
+
+}]
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, body: content }),
+  });
+
+  const data = await res.json();
+  usersdata.push(data);
+
+
+  console.log("✅ Form Submitted:", usersdata);
+
+});
+</script>
